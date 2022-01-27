@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ComponentTestController;  //コントローラー指定
+use App\Http\Controllers\LifeCycleTestController;  //コントローラー指定
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/component-test1', [ComponentTestController::class, 'showComponent1']); //跳び先のファイル名（component-test1）、読み込むコントローラー名（ComponentTestController）メソッド指定（showComponent1）
-Route::get('/component-test2', [ComponentTestController::class, 'showComponent2']); 
+Route::get('/component-test2', [ComponentTestController::class, 'showComponent2']);
+Route::get('/servicecontainertest', [LifeCycleTestController::class, 'showServiceContainerTest']);
 
 require __DIR__.'/auth.php';
