@@ -16,11 +16,11 @@ use App\Http\Controllers\LifeCycleTestController;  //コントローラー指定
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('user.welcome');
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('user.dashboard');
 })->middleware(['auth:users'])->name('dashboard');
 
 Route::get('/component-test1', [ComponentTestController::class, 'showComponent1']); //跳び先のファイル名（component-test1）、読み込むコントローラー名（ComponentTestController）メソッド指定（showComponent1）
