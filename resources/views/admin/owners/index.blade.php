@@ -13,7 +13,7 @@
                     <section class="text-gray-600 body-font">
                         <div class="container px-5 mx-auto">
                             <x-flash-message status="session('status')" />
-                     
+
                             <div class="flex justify-end mb-4">
                                 <button onclick="location.href='{{ route('admin.owners.create') }}'"class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">New Register</button>
                             </div>
@@ -33,8 +33,8 @@
                                   <td class="px-4 py-3">{{ $owner->name }}</td>
                                   <td class="px-4 py-3"> {{ $owner->email }}</td>
                                   <td class="px-4 py-3"> {{ $owner->created_at->diffForHumans() }}</td>
-                                  <td class="w-10 text-center">
-                                    <input name="plan" type="radio">
+                                  <td class="px-4 py-3">
+                                    <button onclick="location.href='{{ route('admin.owners.edit', ['owner' => $owner->id]) }}'" class="text-white bg-indigo-400 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-500 rounded">Edit</button>
                                   </td>
                                 </tr>
                                 @endforeach
