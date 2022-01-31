@@ -75,7 +75,10 @@ class OwnersController extends Controller
 
         return redirect()
             ->route('admin.owners.index')
-            ->with('message', 'Success!');
+            ->with([
+                'message' => 'Success!',
+                'status' => 'info'
+            ]);
     }
 
     /**
@@ -117,8 +120,11 @@ class OwnersController extends Controller
         $owner->password = Hash::make($request->password);
         $owner->save();
         return redirect()
-        ->route('admin.owners.index')
-        ->with('message','Success!');
+            ->route('admin.owners.index')
+            ->with([
+                'message' => 'Success!',
+                'status' => 'info'
+            ]);
     }
 
     /**
@@ -129,6 +135,13 @@ class OwnersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Owner::findOrFail($id)->delete();
+
+        return redirect()
+            ->route('admin.owners.index')
+            ->with([
+                'message' => 'Deleted!',
+                'status' => 'alert'
+            ]);
     }
 }

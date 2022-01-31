@@ -25,6 +25,7 @@
                                   <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Mail Address</th>
                                   <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Created Date</th>
                                   <th class="w-10 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
+                                  <th class="w-10 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -36,6 +37,13 @@
                                   <td class="px-4 py-3">
                                     <button onclick="location.href='{{ route('admin.owners.edit', ['owner' => $owner->id]) }}'" class="text-white bg-indigo-400 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-500 rounded">Edit</button>
                                   </td>
+                                  <form id="delete_{{$owner->id}}" method="post"action="{{ route('admin.owners.destroy', ['owner' => $owner->id])}}">
+                                     @csrf
+                                    @method('delete')
+                                  <td class="px-4 py-3">
+                                    <a href="#" data-id="{{ $owner->id }}" onclick="deletePost(this)" class="text-white bg-red-400 border-0 py-2 px-8 focus:outline-none hover:bg-red-500 rounded">Delete</a>
+                                  </td>
+                                </form>
                                 </tr>
                                 @endforeach
                               </tbody>
@@ -56,4 +64,9 @@
             </div>
         </div>
     </div>
+    <script>
+        function deletePost(e) {
+        'use strict';
+        if (confirm('Is it really okay?')) { document.getElementById('delete_' + e.dataset.id).submit(); }
+        } </script>
 </x-app-layout>
